@@ -1,0 +1,19 @@
+{
+  "name": "bulletproof-node.js-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuvo009/Bulletproof-Node.js-Architecture.git"
+  },
+  "author": "Hasanuzzaman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shuvo009/Bulletproof-Node.js-Architecture/issues"
+  },
+  "homepage": "https://github.com/shuvo009/Bulletproof-Node.js-Architecture#readme"
+}
