@@ -7,7 +7,8 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node .",
+    "start": "node --inspect=5858 -r ts-node/register ./src/index.ts",
+    "start:watch": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,23 @@
   "homepage": "https://github.com/shuvo009/Bulletproof-Node.js-Architecture#readme",
   "devDependencies": {
     "@types/node": "^13.1.8",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
     "tslint": "^5.20.1",
     "typescript": "^3.7.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules",
+      ".vscode"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   }
 }
