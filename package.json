@@ -2,8 +2,12 @@
   "name": "bulletproof-node.js-architecture",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/shuvo009/Bulletproof-Node.js-Architecture/issues"
   },
-  "homepage": "https://github.com/shuvo009/Bulletproof-Node.js-Architecture#readme"
+  "homepage": "https://github.com/shuvo009/Bulletproof-Node.js-Architecture#readme",
+  "devDependencies": {
+    "@types/node": "^13.1.8",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.5"
+  }
 }
