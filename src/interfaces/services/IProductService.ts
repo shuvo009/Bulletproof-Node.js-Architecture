@@ -1,5 +1,5 @@
-import { IProductModel } from "../../models"
-import { IBaseService } from "./IBaseService"
+import { IProductModel } from "../../models";
+import { IBaseService } from "./IBaseService";
 export interface IProductService extends IBaseService<IProductModel> {
 
 }

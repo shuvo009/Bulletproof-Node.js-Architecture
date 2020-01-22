@@ -1,4 +1,4 @@
-import { IBaseModel, IPagedResponse } from "../../models"
+import { IBaseModel, IPagedResponse } from "../../models";
 
 export interface IBaseService<T extends IBaseModel> {
     create(model: T, additionalData: any): Promise<T>;

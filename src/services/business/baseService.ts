@@ -1,22 +1,22 @@
-import { IBaseService, IRepositoryBase } from "../../interfaces"
-import { IBaseModel, IPagedResponse, PagingRequest } from "../../models"
-import { injectable } from 'inversify';
+import { injectable } from "inversify";
+import { IBaseService, IRepositoryBase } from "../../interfaces";
+import { IBaseModel, IPagedResponse, PagingRequest } from "../../models";
 
 @injectable()
 export abstract class BaseService<T extends IBaseModel> implements IBaseService<T> {
 
-    abstract validateModel(tModel: T): string;
-    abstract primaryValueCheckQuery(tModel: T): any;
-    abstract primaryValue(tModel: T): string;
-    abstract beforeCreate(tModel: T, additionalData: any): Promise<T>;
-    abstract beforeUpdate(tModel: T, dbModel: T, additionalData: any): Promise<T>;
-    abstract beforeDelete(tModel: T): Promise<string>;
-    abstract searchQuery(filterOptions: any): any;
-    abstract sortQuery(): any;
-
     constructor(private baseRepository: IRepositoryBase<T>) { }
 
-    async create(model: T, additionalData: any): Promise<T> {
+    public abstract validateModel(tModel: T): string;
+    public abstract primaryValueCheckQuery(tModel: T): any;
+    public abstract primaryValue(tModel: T): string;
+    public abstract beforeCreate(tModel: T, additionalData: any): Promise<T>;
+    public abstract beforeUpdate(tModel: T, dbModel: T, additionalData: any): Promise<T>;
+    public abstract beforeDelete(tModel: T): Promise<string>;
+    public abstract searchQuery(filterOptions: any): any;
+    public abstract sortQuery(): any;
+
+    public async create(model: T, additionalData: any): Promise<T> {
         const validationMessage = this.validateModel(model);
         if (validationMessage.length > 0) {
             throw validationMessage;
@@ -29,7 +29,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         }
 
         if (isDataExist) {
-            throw this.primaryValue(model) + ' already exist.';
+            throw new Error(this.primaryValue(model) + " already exist.");
         }
 
         model = await this.beforeCreate(model, additionalData);
@@ -39,7 +39,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         return model;
     }
 
-    async update(model: T, additionalData: any): Promise<T> {
+    public async update(model: T, additionalData: any): Promise<T> {
         const validationMessage = this.validateModel(model);
         if (validationMessage.length > 0) {
             throw validationMessage;
@@ -48,13 +48,13 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         const uniqueQuery = this.primaryValueCheckQuery(model);
         let isDataExist = false;
         if (uniqueQuery) {
-            uniqueQuery['_id'] = { $ne: model._id };
+            uniqueQuery._id = { $ne: model._id };
             const count = await this.baseRepository.count(uniqueQuery);
             isDataExist = count > 0;
         }
 
         if (isDataExist) {
-            throw this.primaryValue(model) + ' already exist.';
+            throw new Error(this.primaryValue(model) + " already exist.");
         }
 
         let dbModel = await this.baseRepository.findById(model._id);
@@ -65,12 +65,12 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         return dbModel;
     }
 
-    async getById(id: any): Promise<T> {
+    public async getById(id: any): Promise<T> {
         const model = await this.baseRepository.findById(id);
         return model;
     }
 
-    async getAll(filterOptions: any, pageNumber: number): Promise<IPagedResponse<T>> {
+    public async getAll(filterOptions: any, pageNumber: number): Promise<IPagedResponse<T>> {
         const query = this.searchQuery(filterOptions);
         const sort = this.sortQuery();
         const pagingRequest = new PagingRequest(pageNumber);
@@ -78,7 +78,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         return result;
     }
 
-    async delete(id: string): Promise<T> {
+    public async delete(id: string): Promise<T> {
         const model = await this.baseRepository.findById(id);
         const validationMessage = await this.beforeDelete(model);
         if (validationMessage.length > 0) {
@@ -89,22 +89,24 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         return model;
     }
 
-    async getPublished(filterOptions: any): Promise<T[]> {
+    public async getPublished(filterOptions: any): Promise<T[]> {
         const query = this.searchQuery(filterOptions) || {};
-        query['isPublished'] = true;
+        query.isPublished = true;
         const sort = this.sortQuery();
         const result = await this.baseRepository.filter(query, null, sort);
         return result.list;
     }
 
-
-    async afterCreate(tModel: T): Promise<any> {
+    public async afterCreate(tModel: T): Promise<any> {
+        return undefined;
     }
 
-    async afterUpdate(oldModel: T, newModel: T): Promise<any> {
+    public async afterUpdate(oldModel: T, newModel: T): Promise<any> {
+        return undefined;
     }
 
-    async afterDelete(tModel: T): Promise<any> {
+    public async afterDelete(tModel: T): Promise<any> {
+        return undefined;
     }
 
     //#region Supported Methods

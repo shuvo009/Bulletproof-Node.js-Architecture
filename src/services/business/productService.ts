@@ -1,48 +1,48 @@
-import { injectable } from 'inversify';
+import { injectable } from "inversify";
 
-import { IProductService } from "../../interfaces"
+import { IProductService } from "../../interfaces";
 import { IProductModel } from "../../models";
-import { BaseService } from "./baseService"
+import { BaseService } from "./baseService";
 
 @injectable()
 export class ProductService extends BaseService<IProductModel> implements IProductService {
 
     /* #region  Base Class Methods */
-    validateModel(tModel: IProductModel): string {
+    public validateModel(tModel: IProductModel): string {
         return "";
     }
 
-    primaryValueCheckQuery(tModel: IProductModel): any {
+    public primaryValueCheckQuery(tModel: IProductModel): any {
         return { name: tModel.name };
     }
 
-    primaryValue(tModel: IProductModel): string {
+    public primaryValue(tModel: IProductModel): string {
         return tModel.name;
     }
 
-    async beforeCreate(tModel: IProductModel, additionalData: any): Promise<IProductModel> {
+    public async beforeCreate(tModel: IProductModel, additionalData: any): Promise<IProductModel> {
         return tModel;
     }
 
-    async beforeUpdate(tModel: IProductModel, dbModel: IProductModel, additionalData: any): Promise<IProductModel> {
+    public async beforeUpdate(tModel: IProductModel, dbModel: IProductModel, additionalData: any):
+        Promise<IProductModel> {
         dbModel.name = tModel.name;
         dbModel.price = tModel.price;
         dbModel.quantity = tModel.quantity;
         return dbModel;
     }
 
-    async beforeDelete(tModel: IProductModel): Promise<string> {
+    public async beforeDelete(tModel: IProductModel): Promise<string> {
         return "";
     }
 
-    searchQuery(filterOptions: any): any {
+    public searchQuery(filterOptions: any): any {
         return { name: filterOptions.name };
     }
 
-    sortQuery(): any {
+    public sortQuery(): any {
         return { name: 1 };
     }
     /* #endregion */
-
 
 }
