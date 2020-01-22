@@ -6,7 +6,7 @@ interface IProductModelDataModel extends IProductModel, mongoose.Document {
 }
 
 const productDataModelSchema = new mongoose.Schema({
-    lastModifyTime: Number,
+    modifyOn: Number,
     name: String,
     price: Number,
     quantity: Number,

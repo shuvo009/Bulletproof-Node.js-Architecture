@@ -5,7 +5,7 @@ interface IAccountModelDataModel extends IAccountModel, mongoose.Document {
 }
 
 const accountDataModelSchema = new mongoose.Schema({
-    lastModifyTime: Number,
+    modifyOn: Number,
     name: String,
     password: String,
     username: String,
