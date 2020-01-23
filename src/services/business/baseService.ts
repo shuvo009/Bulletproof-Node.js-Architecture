@@ -39,7 +39,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         return model;
     }
 
-    public async update(model: T, additionalData: any): Promise<T> {
+    public async update(id: any, model: T, additionalData: any): Promise<T> {
         const validationMessage = this.validateModel(model);
         if (validationMessage.length > 0) {
             throw validationMessage;
@@ -48,7 +48,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         const uniqueQuery = this.primaryValueCheckQuery(model);
         let isDataExist = false;
         if (uniqueQuery) {
-            uniqueQuery._id = { $ne: model._id };
+            uniqueQuery._id = { $ne: id };
             const count = await this.baseRepository.count(uniqueQuery);
             isDataExist = count > 0;
         }
@@ -57,7 +57,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
             throw new Error(this.primaryValue(model) + " already exist.");
         }
 
-        let dbModel = await this.baseRepository.findById(model._id);
+        let dbModel = await this.baseRepository.findById(id);
         const oldModel = this.copy(dbModel);
         dbModel = await this.beforeUpdate(model, dbModel, additionalData);
         await this.baseRepository.update({ _id: model._id }, dbModel);
