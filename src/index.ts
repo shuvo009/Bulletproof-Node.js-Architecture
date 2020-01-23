@@ -1,12 +1,12 @@
 import * as Hapi from "hapi";
 import * as mongoose from "mongoose";
 import "reflect-metadata";
-import { iocRegister, LoadPlugins } from "./config";
+import { iocRegister, LoadPlugins, serverConfig } from "./config";
 
 async function startServer(): Promise<any> {
     const server = new Hapi.Server({
         debug: { request: ["error"] },
-        port: 3300,
+        port: serverConfig.port,
         routes: {
             cors: {
                 origin: ["*"]
@@ -18,7 +18,7 @@ async function startServer(): Promise<any> {
     LoadPlugins(server);
 
     (mongoose as any).Promise = Promise;
-    await mongoose.connect("", { useNewUrlParser: true, useFindAndModify: false });
+    await mongoose.connect(serverConfig.databaseURL, { useNewUrlParser: true, useFindAndModify: false });
     console.log("database connection -- OK");
 
     await server.start();

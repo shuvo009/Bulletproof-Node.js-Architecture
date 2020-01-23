@@ -1,5 +1,5 @@
 import * as Hapi from "hapi";
-import { serverConstants } from "../../../config";
+import { serverConfig } from "../../../config";
 import { IPlugin } from "../../../interfaces";
 const register = async (server: Hapi.Server): Promise<void> => {
     try {
@@ -22,7 +22,7 @@ const register = async (server: Hapi.Server): Promise<void> => {
 
 const setAuthStrategy = async (server: any, { validate }: any) => {
     server.auth.strategy("jwt", "jwt", {
-        key: serverConstants.jwtSecret,
+        key: serverConfig.jwtSecret,
         validate,
         verifyOptions: {
             algorithms: ["HS256"]
