@@ -17,6 +17,7 @@ export class AuthController implements IControllerRegister {
             method: "POST",
             options: {
                 auth: false,
+                tags: ["api"],
                 validate: {
                     payload: {
                         password: Joi.string().required(),
@@ -32,13 +33,14 @@ export class AuthController implements IControllerRegister {
             method: "POST",
             options: {
                 auth: false,
+                tags: ["api"],
                 validate: {
                     payload: {
                         name: Joi.string().required(),
                         password: Joi.string().required(),
                         username: Joi.string().required(),
-                    }
-                }
+                    },
+                },
             },
             path: `/api/${this.controllerName}/register`
         });

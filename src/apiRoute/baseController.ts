@@ -1,44 +1,95 @@
 import Boom from "boom";
 import * as Hapi from "hapi";
+import * as Joi from "joi";
 import { IBaseService } from "../interfaces";
 import { IBaseModel } from "../models";
 
 export abstract class BaseController<T extends IBaseModel> {
-    constructor(public controllerName: string) {
 
-    }
+    public abstract get controllerName(): string;
 
     public initBaseRoutes(server: Hapi.Server, baseService: IBaseService<T>): void {
         server.route({
             handler: (request: any) => this.get(request.query, baseService),
             method: "GET",
-            path: `/api/${this.controllerName}`
+            options: {
+                auth: {
+                    mode: "required",
+                },
+
+                validate: {
+                    query: {}
+                }
+            },
+            path: `/api/${this.controllerName}`,
+
         });
 
         server.route({
             handler: (request: any) => this.getById(request.params.id, baseService),
             method: "GET",
+            options: {
+                auth: {
+                    mode: "required",
+                },
+                validate: {
+                    params: {
+                        id: Joi.string().required(),
+                    }
+                }
+            },
             path: `/api/${this.controllerName}/{id}`
         });
 
         server.route({
             handler: (request: any) => this.post(request.payload, baseService),
             method: "POST",
+            options: {
+                auth: {
+                    mode: "required",
+                },
+                validate: {
+                    payload: this.getModelPayloadValidator
+                }
+            },
             path: `/api/${this.controllerName}`
         });
 
         server.route({
             handler: (request: any) => this.put(request.params.id, request.payload, baseService),
             method: "PUT",
+            options: {
+                auth: {
+                    mode: "required",
+                },
+                validate: {
+                    params: {
+                        id: Joi.string().required(),
+                    },
+                    payload: this.getModelPayloadValidator
+                }
+            },
             path: `/api/${this.controllerName}/{id}`
         });
 
         server.route({
             handler: (request: any) => this.delete(request.params.id, baseService),
             method: "DELETE",
+            options: {
+                auth: {
+                    mode: "required",
+                },
+                validate: {
+                    params: {
+                        id: Joi.string().required(),
+                    },
+                }
+            },
             path: `/api/${this.controllerName}/{id}`
         });
     }
+
+    public abstract getModelPayloadValidator(): any;
 
     /* #region  Handelars */
     private async get(query: any, baseService: IBaseService<T>): Promise<any> {

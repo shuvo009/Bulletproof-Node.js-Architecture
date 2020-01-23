@@ -19,7 +19,7 @@ async function startServer(): Promise<any> {
 
     (mongoose as any).Promise = Promise;
     await mongoose.connect(serverConfig.databaseURL,
-        { useNewUrlParser: true, useFindAndModify: false,  useUnifiedTopology: true });
+        { useNewUrlParser: true});
 
     console.log("database connection -- OK");
 
