@@ -7,6 +7,7 @@ if (!envFound) {
 
 export const serverConfig = {
   databaseURL: process.env.MONGODB_URI,
+  jwtExpiration: process.env.jWT_EXPIRATION,
   jwtSecret: process.env.JWT_SECRET,
   port: parseInt(process.env.PORT, 10),
 };
