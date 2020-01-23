@@ -1,5 +1,5 @@
 import * as Hapi from "hapi";
-import * as mongoose from "mongoose";
+import mongoose = require("mongoose");
 import "reflect-metadata";
 import { iocRegister, LoadPlugins, serverConfig } from "./config";
 
