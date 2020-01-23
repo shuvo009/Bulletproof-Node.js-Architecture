@@ -1,2 +1,1 @@
-export * from "./repositoryRegister";
-export * from "./serviceRegister";
+export * from "./iocRegister";
