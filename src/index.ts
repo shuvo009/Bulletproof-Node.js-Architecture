@@ -14,11 +14,13 @@ async function startServer(): Promise<any> {
         }
     });
 
-    iocRegister(server);
     LoadPlugins(server);
+    iocRegister(server);
 
     (mongoose as any).Promise = Promise;
-    await mongoose.connect(serverConfig.databaseURL, { useNewUrlParser: true, useFindAndModify: false });
+    await mongoose.connect(serverConfig.databaseURL,
+        { useNewUrlParser: true, useFindAndModify: false,  useUnifiedTopology: true });
+
     console.log("database connection -- OK");
 
     await server.start();

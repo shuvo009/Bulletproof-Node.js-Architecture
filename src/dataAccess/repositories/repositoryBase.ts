@@ -71,7 +71,8 @@ export abstract class RepositoryBase<T extends IBaseModel> implements
 
     public create(item: T extends IBaseModel ? any : any): Promise<T extends IBaseModel ? any : any> {
         return new Promise((resolve, reject) => {
-            item._id = mongoose.Types.ObjectId();
+            item._id = undefined;
+            item.modifyOn = new Date().getTime();
             this.model.create(item, (err: any, data: T extends IBaseModel ? any : any) => {
                 if (err) {
                     reject(new Error(JSON.stringify(err)));
