@@ -1,5 +1,5 @@
+import * as Hapi from "@hapi/hapi";
 import * as fs from "fs";
-import * as Hapi from "hapi";
 import * as path from "path";
 import { IPlugin } from "../../interfaces";
 

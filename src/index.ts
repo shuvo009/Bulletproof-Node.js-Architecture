@@ -1,4 +1,4 @@
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 import mongoose = require("mongoose");
 import "reflect-metadata";
 import { iocRegister, LoadPlugins, serverConfig } from "./config";
@@ -19,7 +19,7 @@ async function startServer(): Promise<any> {
 
     (mongoose as any).Promise = Promise;
     await mongoose.connect(serverConfig.databaseURL,
-        { useNewUrlParser: true});
+        { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true });
 
     console.log("database connection -- OK");
 

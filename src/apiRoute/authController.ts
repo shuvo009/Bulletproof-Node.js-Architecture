@@ -1,7 +1,7 @@
-import Boom from "boom";
-import * as Hapi from "hapi";
+import Boom from "@hapi/boom";
+import * as Hapi from "@hapi/hapi";
+import Joi from "@hapi/joi";
 import { Container } from "inversify";
-import * as Joi from "joi";
 import { serviceTypes } from "../config";
 import { IAccountService, IControllerRegister } from "../interfaces";
 import { IAccountModel } from "../models";
@@ -19,10 +19,10 @@ export class AuthController implements IControllerRegister {
                 auth: false,
                 tags: ["api"],
                 validate: {
-                    payload: {
+                    payload: Joi.object({
                         password: Joi.string().required(),
                         username: Joi.string().required(),
-                    }
+                    })
                 }
             },
             path: `/api/${this.controllerName}/login`
@@ -35,11 +35,11 @@ export class AuthController implements IControllerRegister {
                 auth: false,
                 tags: ["api"],
                 validate: {
-                    payload: {
+                    payload: Joi.object({
                         name: Joi.string().required(),
                         password: Joi.string().required(),
                         username: Joi.string().required(),
-                    },
+                    }),
                 },
             },
             path: `/api/${this.controllerName}/register`

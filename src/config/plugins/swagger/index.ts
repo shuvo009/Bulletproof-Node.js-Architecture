@@ -1,11 +1,11 @@
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 import { IPlugin } from "../../../interfaces";
 
 const register = async (server: Hapi.Server): Promise<void> => {
     try {
         return server.register([
-            require("inert"),
-            require("vision"),
+            require("@hapi/inert"),
+            require("@hapi/vision"),
             {
                 options: {
                     documentationPage: true,

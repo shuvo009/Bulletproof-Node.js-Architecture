@@ -1,6 +1,6 @@
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
+import Joi from "@hapi/joi";
 import { Container } from "inversify";
-import * as Joi from "joi";
 import { serviceTypes } from "../config";
 import { IControllerRegister, IProductService } from "../interfaces";
 import { IProductModel } from "../models";

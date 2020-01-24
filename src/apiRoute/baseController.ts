@@ -1,6 +1,6 @@
-import Boom from "boom";
-import * as Hapi from "hapi";
-import * as Joi from "joi";
+import Boom from "@hapi/boom";
+import * as Hapi from "@hapi/hapi";
+import Joi from "@hapi/joi";
 import { IBaseService } from "../interfaces";
 import { IBaseModel } from "../models";
 

@@ -1,4 +1,4 @@
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 import { Container } from "inversify";
 import { AuthController } from "../../apiRoute";
 import { IControllerRegister } from "../../interfaces";
