@@ -16,7 +16,7 @@ To start the @hapi server, run the following
 ```
 npm run start:watch
 ```
-Open http://localhost:3000/doc and take a look around.
+Open http://localhost:3000/doc and take a look api documentation.
 
 ## Use Docker
 You can also run this app as a Docker container:
@@ -30,7 +30,9 @@ Step 2: Run the Docker container locally:
 docker-compose up
 ```
 ## Dependencies
-* Typescript
-* @hapi/hapi
+* [Typescript](https://www.typescriptlang.org) - Typescript is an open-source programming language developed and maintained by Microsoft.
+* [@hapi/hapi](https://hapi.dev/) - The server for handling and routing HTTP requests
+* [hapi-auth-jwt2](https://www.npmjs.com/package/hapi-auth-jwt2) - Simplified JSON Web Token (JWT) authentication plugin
+* [hapi-swagger](https://github.com/glennjones/hapi-swagger) - A swagger documentation UI generator plugin for hapi
 * inversify
 * mongoose
