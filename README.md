@@ -3,7 +3,15 @@ Here I demonstration a bulletproof and clean architecture which automatically gu
 ## Requirements
 * Node >=12
 * Git
-
+## Common setup
+Clone the repo and install the dependencies.
+```
+git clone https://github.com/shuvo009/Bulletproof-Node.js-Architecture.git
+cd Bulletproof-Node.js-Architecture
+```
+```
+npm install
+```
 ## Dependencies
 * Typescript
 * @hapi/hapi
