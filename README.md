@@ -12,6 +12,20 @@ cd Bulletproof-Node.js-Architecture
 ```
 npm install
 ```
+To start the @hapi server, run the following
+```
+npm run start:watch
+```
+## Use Docker
+You can also run this app as a Docker container:
+Step 1: Clone the repo
+```
+git clone https://github.com/shuvo009/Bulletproof-Node.js-Architecture.git
+```
+Step 2: Run the Docker container locally:
+```
+docker-compose up
+```
 ## Dependencies
 * Typescript
 * @hapi/hapi
