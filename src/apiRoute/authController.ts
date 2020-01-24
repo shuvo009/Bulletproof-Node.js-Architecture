@@ -17,7 +17,7 @@ export class AuthController implements IControllerRegister {
             method: "POST",
             options: {
                 auth: false,
-                tags: ["api"],
+                tags: ["api", this.controllerName],
                 validate: {
                     payload: Joi.object({
                         password: Joi.string().required(),
@@ -33,7 +33,7 @@ export class AuthController implements IControllerRegister {
             method: "POST",
             options: {
                 auth: false,
-                tags: ["api"],
+                tags: ["api", this.controllerName],
                 validate: {
                     payload: Joi.object({
                         name: Joi.string().required(),

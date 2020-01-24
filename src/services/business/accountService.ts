@@ -17,7 +17,10 @@ export class AccountService implements IAccountService {
             throw new Error("invalid username or password");
         }
         const token = this.generateToken(account);
-        return { token };
+        return {
+            access_token: token,
+            token_type: "Bearer"
+        };
     }
 
     public async register(accountModel: IAccountModel): Promise<void> {

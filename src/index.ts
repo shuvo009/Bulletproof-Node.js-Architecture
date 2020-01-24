@@ -1,7 +1,7 @@
 import * as Hapi from "@hapi/hapi";
 import mongoose = require("mongoose");
 import "reflect-metadata";
-import { iocRegister, LoadPlugins, serverConfig } from "./config";
+import { iocRegister, LoadPlugins, routerRegister, serverConfig } from "./config";
 
 async function startServer(): Promise<any> {
     const server = new Hapi.Server({
@@ -14,8 +14,9 @@ async function startServer(): Promise<any> {
         }
     });
 
-    LoadPlugins(server);
-    iocRegister(server);
+    const container = iocRegister(server);
+    await LoadPlugins(container, server);
+    routerRegister(server, container);
 
     (mongoose as any).Promise = Promise;
     await mongoose.connect(serverConfig.databaseURL,

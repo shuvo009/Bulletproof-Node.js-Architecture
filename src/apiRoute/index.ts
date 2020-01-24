@@ -1,2 +1,2 @@
 export * from "./authController";
-export * from "./baseController";
+export * from "./productController";

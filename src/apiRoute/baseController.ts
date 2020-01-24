@@ -13,12 +13,10 @@ export abstract class BaseController<T extends IBaseModel> {
             handler: (request: any) => this.get(request.query, baseService),
             method: "GET",
             options: {
-                auth: {
-                    mode: "required",
-                },
-
+                auth: "jwt",
+                tags: ["api", this.controllerName],
                 validate: {
-                    query: {}
+                    query: Joi.object({})
                 }
             },
             path: `/api/${this.controllerName}`,
@@ -29,13 +27,12 @@ export abstract class BaseController<T extends IBaseModel> {
             handler: (request: any) => this.getById(request.params.id, baseService),
             method: "GET",
             options: {
-                auth: {
-                    mode: "required",
-                },
+                auth: "jwt",
+                tags: ["api", this.controllerName],
                 validate: {
-                    params: {
+                    params: Joi.object({
                         id: Joi.string().required(),
-                    }
+                    })
                 }
             },
             path: `/api/${this.controllerName}/{id}`
@@ -45,11 +42,10 @@ export abstract class BaseController<T extends IBaseModel> {
             handler: (request: any) => this.post(request.payload, baseService),
             method: "POST",
             options: {
-                auth: {
-                    mode: "required",
-                },
+                auth: "jwt",
+                tags: ["api", this.controllerName],
                 validate: {
-                    payload: this.getModelPayloadValidator
+                    payload: Joi.object(this.getModelPayloadValidator())
                 }
             },
             path: `/api/${this.controllerName}`
@@ -59,13 +55,12 @@ export abstract class BaseController<T extends IBaseModel> {
             handler: (request: any) => this.put(request.params.id, request.payload, baseService),
             method: "PUT",
             options: {
-                auth: {
-                    mode: "required",
-                },
+                auth: "jwt",
+                tags: ["api", this.controllerName],
                 validate: {
-                    params: {
+                    params: Joi.object({
                         id: Joi.string().required(),
-                    },
+                    }),
                     payload: this.getModelPayloadValidator
                 }
             },
@@ -76,13 +71,12 @@ export abstract class BaseController<T extends IBaseModel> {
             handler: (request: any) => this.delete(request.params.id, baseService),
             method: "DELETE",
             options: {
-                auth: {
-                    mode: "required",
-                },
+                auth: "jwt",
+                tags: [this.controllerName],
                 validate: {
-                    params: {
+                    params: Joi.object({
                         id: Joi.string().required(),
-                    },
+                    }),
                 }
             },
             path: `/api/${this.controllerName}/{id}`

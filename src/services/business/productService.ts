@@ -1,11 +1,16 @@
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 
-import { IProductService } from "../../interfaces";
+import { repositoryTypes } from "../../config";
+import { IProductRepository, IProductService } from "../../interfaces";
 import { IProductModel } from "../../models";
 import { BaseService } from "./baseService";
 
 @injectable()
 export class ProductService extends BaseService<IProductModel> implements IProductService {
+
+    constructor(@inject(repositoryTypes.ProductRepository) private productRepository: IProductRepository) {
+        super(productRepository);
+    }
 
     /* #region  Base Class Methods */
     public validateModel(tModel: IProductModel): string {

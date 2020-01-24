@@ -1,14 +1,15 @@
 import * as Hapi from "@hapi/hapi";
-import { serverConfig } from "../../../config";
-import { IPlugin } from "../../../interfaces";
-const register = async (server: Hapi.Server): Promise<void> => {
+import { Container } from "inversify";
+import { repositoryTypes, serverConfig } from "../../../config";
+import { IAccountRepository, IPlugin } from "../../../interfaces";
+const register = async (container: Container, server: Hapi.Server): Promise<void> => {
     try {
         const validateUser = async (decoded: any, request: Hapi.Request, h: Hapi.ResponseToolkit) => {
-            //            const user = await database.userModel.findById(decoded.id).lean(true);
-            //            if (!user) {
-            //                return { isValid: false };
-            //            }
-
+            const accountRepository = container.get<IAccountRepository>(repositoryTypes.AccountRepository);
+            const user = await accountRepository.findById(decoded.id);
+            if (!user) {
+                return { isValid: false };
+            }
             return { isValid: true };
         };
 

@@ -1,7 +1,8 @@
 import * as Hapi from "@hapi/hapi";
+import { Container } from "inversify";
 import { IPlugin } from "../../../interfaces";
 
-const register = async (server: Hapi.Server): Promise<void> => {
+const register = async (container: Container, server: Hapi.Server): Promise<void> => {
     try {
         return server.register([
             require("@hapi/inert"),
