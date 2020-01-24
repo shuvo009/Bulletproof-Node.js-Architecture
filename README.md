@@ -16,6 +16,8 @@ To start the @hapi server, run the following
 ```
 npm run start:watch
 ```
+Open http://localhost:3000/doc and take a look around.
+
 ## Use Docker
 You can also run this app as a Docker container:
 
