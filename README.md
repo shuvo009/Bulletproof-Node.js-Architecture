@@ -18,6 +18,7 @@ npm run start:watch
 ```
 ## Use Docker
 You can also run this app as a Docker container:
+
 Step 1: Clone the repo
 ```
 git clone https://github.com/shuvo009/Bulletproof-Node.js-Architecture.git
