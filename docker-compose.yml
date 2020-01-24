@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        ports: 
+            - "3000:3000"
+        depends_on:
+            - mongo
+        environment:
+            - MONGODB_URI=mongodb://mongo:27017
+            - PORT=3000
+    mongo:
+        image: mongo
+        ports:
+            - "27017:27017"

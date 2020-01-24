@@ -19,7 +19,7 @@ export class AccountService implements IAccountService {
         const token = this.generateToken(account);
         return {
             access_token: token,
-            token_type: "Bearer"
+            token_type: "jwt"
         };
     }
 
