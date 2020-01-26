@@ -1,4 +1,4 @@
-# Bulletproof and Clean Node.js Architecture
+# Bulletproof And Clean Node.js Architecture
 Here I demonstration a bulletproof and clean architecture which automatically guide you to write loosely coupled and more maintainable code using Hapi, Node.js and MongoDB.
 ## Requirements
 * Node >=12
@@ -75,3 +75,9 @@ src
 * **Service** - We need to create service for each service and it should implemented it's own intreface and also inherited from `BaseService`. So it will help us to avoid re-implement common functionality at each repository. Multiple repository can be injected in a service via constrator.
 * **apiRoute** - All route and controller should be inherited from `BaseController`. By inherit `BaseController` we will get basic CRUD operation automatically.
 * **config/ioc** - We have to register each Repository at `RepositoryRegister` and each service at `ServiceRegister` and also for controller at `routerRegister`
+## Design Patterns are used
+* Repository patterns 
+* Façade
+* Inversion of control (IOC)
+## ToDo
+* Unit Test
