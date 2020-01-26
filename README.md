@@ -66,3 +66,7 @@ src
     └── business              # All domain related business will goes here.                     
  
 ```
+## Code overview
+* **DatbaseModel** All database model should inherit from `IBaseModel` to avoid re-implement common properties.
+* **Repository Interface** We need to create Interface for each Repository and it should inherit from IRepositoryBase. So it should help us to avoid re-implement common functionality. 
+
