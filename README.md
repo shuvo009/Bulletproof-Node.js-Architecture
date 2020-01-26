@@ -1,4 +1,4 @@
-# Bulletproof and clean Node.js Architecture
+# Bulletproof and Clean Node.js Architecture
 Here I demonstration a bulletproof and clean architecture which automatically guide you to write loosely coupled and more maintainable code using Hapi, Node.js and MongoDB.
 ## Requirements
 * Node >=12
@@ -12,7 +12,7 @@ cd Bulletproof-Node.js-Architecture
 ```
 npm install
 ```
-To start the @hapi server, run the following
+To start the @hapi server, run the following command
 ```
 npm run start:watch
 ```
