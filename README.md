@@ -68,5 +68,5 @@ src
 ```
 ## Code overview
 * **DatbaseModel** All database model should inherit from `IBaseModel` to avoid re-implement common properties.
-* **Repository Interface** We need to create Interface for each Repository and it should inherit from IRepositoryBase. So it should help us to avoid re-implement common functionality. 
+* **Repository Interface** We need to create Interface for each Repository and it should inherit from `IRepositoryBase`. So it will help us to avoid re-implement common functionality at each repository.
 
