@@ -38,3 +38,31 @@ docker-compose up
 * [mongoose](https://mongoosejs.com) - Mongoose is a MongoDB object modeling tool
 * [nodemon](https://nodemon.io) -  Nodemon is a utility that will monitor for any changes in your source and automatically restart your server.
 * [tslint](https://palantir.github.io/tslint) - TSLint is an extensible static analysis tool that checks TypeScript code.
+
+## Directory Structure
+
+```
+src
+├── apiRoute                  # @hapi route registration and controllers will goes here.
+├── config                    # All kind of configuration related code will goes here.
+│   ├── constant              # Different types of constant will goes here.
+│   ├── ioc                   # IOC related configuration code will goes here.
+│   └── plugins               # All @hapi plugins will goes this directory.                  
+│
+├── dataAccess                # Any kind of database related code are goes here.
+│   ├── repositories          # Repositories are goes here. I prefer one repository for one table.
+│   └── schema                # All database schema will goes here.
+│                     
+├── interfaces                # All interfaces of this application will goes here.
+│   ├── ioc                   # IOC related interfaces will goes here.
+│   ├── repositories          # Repository interfaces will goes here.
+│   └── services              # Service interfaces will goes here.
+│                     
+├── models                    # All models of this application will goes here.
+│   ├── databaseModels        # All database models will goes here.
+│   └── viewModels            # All viewModels models will goes here.
+│                     
+└── services                  # All kind of business and third pary service integration will goes here.
+    └── business              # All domain related business will goes here.                     
+ 
+```
