@@ -3,6 +3,7 @@ Here I demonstration a bulletproof and clean architecture which automatically gu
 ## Requirements
 * Node >=12
 * Git
+* VS Code
 ## Common setup
 Clone the repo and install the dependencies.
 ```
@@ -50,7 +51,7 @@ src
 │   └── plugins               # All @hapi plugins will goes this directory.                  
 │
 ├── dataAccess                # Any kind of database related code are goes here.
-│   ├── repositories          # Repositories are goes here. I prefer one repository for one table.
+│   ├── repositories          # Repositories are goes here. I prefer one repository for one schema.
 │   └── schema                # All database schema will goes here.
 │                     
 ├── interfaces                # All interfaces of this application will goes here.
@@ -67,6 +68,10 @@ src
  
 ```
 ## Code overview
-* **DatbaseModel** All database model should inherit from `IBaseModel` to avoid re-implement common properties.
-* **Repository Interface** We need to create Interface for each Repository and it should inherit from `IRepositoryBase`. So it will help us to avoid re-implement common functionality at each repository.
-
+* **DatbaseModel** - All database model should inherit from `IBaseModel` to avoid re-implement common properties.
+* **Repository Interface** - We need to create Interface for each Repository and it should inherit from `IRepositoryBase`. So it will help us to avoid re-implement common functionality at each repository.
+* **Repository** - We need to create repository for each schema and it should implement it's own intreface and also inherit from `RepositoryBase`. So it will help us to avoid re-implement common functionality at each repository.
+* **Service Interface** -  We need to create Interface for each Service for our business domain and it should inherit from `IBaseService`. So it will help us to avoid re-implement common functionality at each service.
+* **Service** - We need to create service for each service and it should implement it's own intreface and also inherit from `BaseService`. So it will help us to avoid re-implement common functionality at each repository. Multiple repository can be inject in a service via constrator.
+* **apiRoute** - All route and controller should be inherit from `BaseController`. By inherit `BaseController`we will get basic CRUD operation automatically.
+* **config/ioc** - We have to register each Repository at `RepositoryRegister` and each service at `ServiceRegister` and also for controller at `routerRegister`
