@@ -68,11 +68,11 @@ src
  
 ```
 ## Code overview
-* **DatbaseModel** - All database model should inherited from `IBaseModel` to avoid re-implement common properties.
-* **Repository Interface** - We need to create Interface for each Repository and it should inherited from `IRepositoryBase`. So it will help us to avoid re-implement common functionality at each repository.
-* **Repository** - We need to create repository for each schema and it should implemented it's own intreface and also inherited from `RepositoryBase`. So it will help us to avoid re-implement common functionality at each repository.
-* **Service Interface** -  We need to create Interface for each Service for our business domain and it should inherited from `IBaseService`. So it will help us to avoid re-implement common functionality at each service.
-* **Service** - We need to create service for each service and it should implemented it's own intreface and also inherited from `BaseService`. So it will help us to avoid re-implement common functionality at each repository. Multiple repository can be injected in a service via constrator.
+* **DatbaseModel** - All database model should inherited from `IBaseModel` it helps you to implement common properties.
+* **Repository Interface** - We need to create Interface for each Repository and it should inherited from `IRepositoryBase` it helps you to implement common functionality at repository.
+* **Repository** - We need to create repository for each schema and it should implemented it's own intreface and also inherited from `RepositoryBase` it helps you to implement common functionality at each repository.
+* **Service Interface** -  We need to create Interface for each Service for our business domain and it should inherited from `IBaseService` it helps you to implement common functionality at each service.
+* **Service** - We need to create service for each service and it should implemented it's own intreface and also inherited from `BaseService` it helps you to implement common functionality at each service. Multiple repository can be injected in a service via constrator.
 * **apiRoute** - All route and controller should be inherited from `BaseController`. By inherit `BaseController` we will get basic CRUD operation automatically.
 * **config/ioc** - We have to register each Repository at `RepositoryRegister` and each service at `ServiceRegister` and also for controller at `routerRegister`
 ## Design Patterns are used
