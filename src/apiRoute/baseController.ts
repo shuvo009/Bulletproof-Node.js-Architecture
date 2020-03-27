@@ -72,7 +72,7 @@ export abstract class BaseController<T extends IBaseModel> {
             method: "DELETE",
             options: {
                 auth: "jwt",
-                tags: [this.controllerName],
+                tags: ["api", this.controllerName],
                 validate: {
                     params: Joi.object({
                         id: Joi.string().required(),
