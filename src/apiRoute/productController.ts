@@ -7,7 +7,7 @@ import { IProductModel } from "../models";
 import { BaseController } from "./baseController";
 
 export class ProductController extends BaseController<IProductModel> implements IControllerRegister {
-
+    
     public register(server: Hapi.Server, container: Container): void {
         const productService: IProductService = container.get<IProductService>(serviceTypes.ProductService);
         this.initBaseRoutes(server, productService);
@@ -19,6 +19,13 @@ export class ProductController extends BaseController<IProductModel> implements 
             name: Joi.string().required(),
             price: Joi.string().required(),
             quantity: Joi.string().required(),
+        };
+    }
+    
+    public getModelQueryValidator() {
+        return {
+            keyword: Joi.string().allow(""),
+            page: Joi.number().integer(),
         };
     }
 

@@ -16,7 +16,7 @@ export abstract class BaseController<T extends IBaseModel> {
                 auth: "jwt",
                 tags: ["api", this.controllerName],
                 validate: {
-                    query: Joi.object({})
+                    query: Joi.object(this.getModelQueryValidator())
                 }
             },
             path: `/api/${this.controllerName}`,
@@ -84,6 +84,7 @@ export abstract class BaseController<T extends IBaseModel> {
     }
 
     public abstract getModelPayloadValidator(): any;
+    public abstract getModelQueryValidator(): any;
 
     /* #region  Handelars */
     private async get(query: any, baseService: IBaseService<T>): Promise<any> {
