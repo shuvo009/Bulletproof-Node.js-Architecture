@@ -60,7 +60,7 @@ export abstract class BaseService<T extends IBaseModel> implements IBaseService<
         let dbModel = await this.baseRepository.findById(id);
         const oldModel = this.copy(dbModel);
         dbModel = await this.beforeUpdate(model, dbModel, additionalData);
-        await this.baseRepository.update({ _id: model._id }, dbModel);
+        await this.baseRepository.update({ _id: dbModel._id }, dbModel);
         await this.afterUpdate(oldModel, dbModel);
         return dbModel;
     }
